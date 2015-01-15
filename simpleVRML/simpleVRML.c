@@ -116,7 +116,7 @@ static int checkCollisions( ObjectData_T object0, ObjectData_T object1, float co
 
 	dist = (x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)+(z1-z2)*(z1-z2);
 
-	printf("Dist = %3.2f\n",dist);
+	//printf("Dist = %3.2f\n",dist);
 
 	if(dist < collide_dist)
 		return 1;
@@ -441,6 +441,8 @@ static void Display(void)
 			//fprintf(stderr, "About to draw object %i\n", i);
 			if(gObjectData[i].collide ){
 				arVrmlDraw(gObjectData[i].collide_vrml_id);
+				gObjectData[i].collide = 0;
+				gObjectData[i].collide_vrml_id = -1;
 			}else{
 				arVrmlDraw(gObjectData[i].vrml_id);
 			}
