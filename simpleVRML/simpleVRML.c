@@ -349,10 +349,8 @@ static void mainLoop(void)
 				if(checkCollisions(gObjectData[i-1],gObjectData[i],COLLIDE_DIST)){
 					gObjectData[i-1].collide = 1;
 					gObjectData[i].collide = 1;
-
 					gObjectData[i-1].collide_vrml_id = gObjectData[i].vrml_id;
 					gObjectData[i].collide_vrml_id = gObjectData[i-1].vrml_id;
-					
 				}
 				else{
 					gObjectData[i-1].collide = 0;
@@ -441,17 +439,25 @@ static void Display(void)
 			//fprintf(stderr, "About to draw object %i\n", i);
 			if(gObjectData[i].collide ){
 				arVrmlDraw(gObjectData[i].collide_vrml_id);
+				glTranslatef( 30.0, -30.0, 0.0 );
+				glColor3f( 0.0, 1.0, 0.0 );
+				glutSolidCube(20.0);
+				
 				gObjectData[i].collide = 0;
 				gObjectData[i].collide_vrml_id = -1;
 			}else{
 				arVrmlDraw(gObjectData[i].vrml_id);
+				glTranslatef( 30.0, -30.0, 0.0 );
+				glColor3f( 1.0, 0.0, 0.0 );
+				glutSolidCube(20.0);
+				
 			}
 		}			
 	}
 	
 	// Any 2D overlays go here.
 	//none
-	
+
 	glutSwapBuffers();
 }
 
